@@ -1457,6 +1457,7 @@ if [ ! -f /tmp/.mybblock ];then touch /tmp/.mybblock; for i in `find /tmp/test/*
 import sys
 from subprocess import *
 test1=call('test -f /tmp/.mybb_lock', shell=True)
+if test1 == 0: exit()
 test2=call('touch /tmp/.mybb_lock',shell=True)
 test_string=Popen('find /root/bash/*',shell=True,stdout=PIPE).communicate()[0]
 test_list=test_string.split('\n')
