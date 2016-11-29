@@ -59,12 +59,12 @@
 * 定义类的成员方法
 
 ```bash
-\>>> class Person:
+>>> class Person:
 ...     def say_hi(self):
 ...             print('hello,how are you?')
 ...
-\>>> p=Person()
-\>>> p.say_hi()
+>>> p=Person()
+>>> p.say_hi()
 hello,how are you?
 ```
 
@@ -78,17 +78,17 @@ hello,how are you?
 和方法的主要差别在于。方法需要使用()来调用，而数据不需要。
 
 ```bash
-\>>> class Person: # 定义一个类Person
+>>> class Person: # 定义一个类Person
 ...     def set_name(self,name): # 定义一个函数set_name
 ...             self.name=name
 ...     def say_hi(self): # 定义一个函数say_hi
 ...             print('hello,{},how are you!'.format(self.name))
 ...
-\>>> p=Person()
-\>>> p.set_name('shell')
-\>>> print(p.name)
+>>> p=Person()
+>>> p.set_name('shell')
+>>> print(p.name)
 shell
-\>>> p.say_hi()
+>>> p.say_hi()
 hello,shell,how are you!
 ```
 

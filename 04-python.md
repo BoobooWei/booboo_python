@@ -167,16 +167,16 @@ a.py
 Python 2.7.5 (default, Oct 11 2015, 17:47:16)
 [GCC 4.8.3 20140911 (Red Hat 4.8.3-9)] on linux2
 Type "help", "copyright", "credits" or "license" for more information.
-\>>> import a
-\>>> dir(a)
+>>> import a
+>>> dir(a)
 ['__builtins__', '__doc__', '__file__', '__name__', '__package__', 'max']
-\>>> a.max
+>>> a.max
 <function max at 0x7f8518edd938>
-\>>> a.max(3,4)
+>>> a.max(3,4)
 4
-\>>> a.max(5,2)
+>>> a.max(5,2)
 5
-\>>> exit()
+>>> exit()
 [root@rhel6 ~] ll
 total 8
 -rw-rw-r-- 1 root root 111 Nov 17 12:09 a.py
@@ -200,12 +200,12 @@ total 12
 Python 2.7.5 (default, Oct 11 2015, 17:47:16)
 [GCC 4.8.3 20140911 (Red Hat 4.8.3-9)] on linux2
 Type "help", "copyright", "credits" or "license" for more information.
-\>>> import b
-\>>> dir(b)
+>>> import b
+>>> dir(b)
 ['__builtins__', '__doc__', '__file__', '__name__', '__package__', 'min']
-\>>> b.min(4,1)
+>>> b.min(4,1)
 1
-\>>> exit()
+>>> exit()
 [root@rhel6 ~] ll
 total 16
 -rw-rw-r-- 1 kiosk kiosk 111 Nov 17 12:09 a.py
@@ -954,11 +954,11 @@ Last login: Tue Oct 18 16:55:43 2016 from 172.25.0.250
 Python 2.7.5 (default, Oct 11 2015, 17:47:16)
 [GCC 4.8.3 20140911 (Red Hat 4.8.3-9)] on linux2
 Type "help", "copyright", "credits" or "license" for more information.
-\>>> import psutil
+>>> import psutil
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 ImportError: No module named psutil
-\>>>
+>>>
 ```
 
 ## Python实践3——使用psutil系统性能信息模块获取当前物理内存总大小及已使用大小
@@ -975,15 +975,15 @@ Swap:          511M          0B        511M
 ```
 
 ```shell
-\>>> import psutil
-\>>> mem=psutil.virtual_memory()
-\>>> mem.total,mem.used
+>>> import psutil
+>>> mem=psutil.virtual_memory()
+>>> mem.total,mem.used
 (512729088, 440070144)
 ```
 
 我们可以通过help(psutil)来查看帮助信息;进入帮助之后可以使用“/关键字”搜索关键字;使用q退出
 ```shell
-\>>> help(psutil)
+>>> help(psutil)
 ```
 virtual_memory
 	total	虚拟内存的总大小
@@ -1007,18 +1007,18 @@ psutil.virtual_memory()与psutil.swap_memory()方法获取这些信息
 ## Python实践4——使用psutil系统性能信息模块获取当前系统CPU利用率
 
 ```shell
-\>>> import psutil
-\>>> psutil.cpu_times()
+>>> import psutil
+>>> psutil.cpu_times()
 scputimes(user=40.86, nice=9.26, system=41.36, idle=5833.96, iowait=15.87, irq=0.0, softirq=0.06, steal=25.99, guest=0.0, guest_nice=0.0)
-\>>> psutil.cpu_times(percpu=True)
+>>> psutil.cpu_times(percpu=True)
 [scputimes(user=21.43, nice=4.91, system=22.05, idle=2941.57, iowait=8.83, irq=0.0, softirq=0.04, steal=12.93, guest=0.0, guest_nice=0.0), scputimes(user=19.43, nice=4.34, system=19.31, idle=2951.0, iowait=7.04, irq=0.0, softirq=0.01, steal=13.06, guest=0.0, guest_nice=0.0)]
-\>>> psutil.cpu_times().user
+>>> psutil.cpu_times().user
 40.88
-\>>> psutil.cpu_count(logical=True)
+>>> psutil.cpu_count(logical=True)
 2
-\>>> psutil.cpu_count(logical=False)
+>>> psutil.cpu_count(logical=False)
 2
-\>>>
+>>>
 ```
 
 ### CPU信息
@@ -1042,20 +1042,20 @@ psutil.cpu_times()方法可以非常简单地得到这些信息
 ## Python实践5——使用psutil系统性能信息模块获取当前系统磁盘信息
 
 ```shell
-\>>> import psutil
-\>>> d=psutil.disk_partitions()
-\>>> print d
+>>> import psutil
+>>> d=psutil.disk_partitions()
+>>> print d
 [sdiskpart(device='/dev/mapper/rhel-root', mountpoint='/', fstype='xfs', opts='rw,seclabel,relatime,attr2,inode64,noquota'), sdiskpart(device='/dev/mapper/rhel-home', mountpoint='/home', fstype='xfs', opts='rw,seclabel,relatime,attr2,inode64,noquota'), sdiskpart(device='/dev/vda1', mountpoint='/boot', fstype='xfs', opts='rw,seclabel,relatime,attr2,inode64,noquota')]
-\>>> d=psutil.disk_usage('/')
-\>>> print d
+>>> d=psutil.disk_usage('/')
+>>> print d
 sdiskusage(total=9447669760, used=1199980544, free=8247689216, percent=12.7)
-\>>> d=psutil.disk_io_counters()
-\>>> print d
+>>> d=psutil.disk_io_counters()
+>>> print d
 sdiskio(read_count=16896, write_count=21325, read_bytes=428721664, write_bytes=707450880, read_time=35974, write_time=1077043, read_merged_count=8, write_merged_count=962, busy_time=131356)
-\>>> d=psutil.disk_io_counters(perdisk=True)
-\>>> print d
+>>> d=psutil.disk_io_counters(perdisk=True)
+>>> print d
 {'vda1': sdiskio(read_count=581, write_count=519, read_bytes=4516352, write_bytes=2109440, read_time=687, write_time=663, read_merged_count=0, write_merged_count=0, busy_time=1312), 'vda2': sdiskio(read_count=8134, write_count=9658, read_bytes=211797504, write_bytes=352695296, read_time=17532, write_time=456746, read_merged_count=8, write_merged_count=962, busy_time=47092), 'vdb': sdiskio(read_count=144, write_count=0, read_bytes=1040384, write_bytes=0, read_time=429, write_time=0, read_merged_count=0, write_merged_count=0, busy_time=378), 'dm-2': sdiskio(read_count=87, write_count=4, read_bytes=522752, write_bytes=2097152, read_time=53, write_time=640, read_merged_count=0, write_merged_count=0, busy_time=210), 'dm-0': sdiskio(read_count=7824, write_count=11150, read_bytes=209751040, write_bytes=350598144, read_time=16900, write_time=618994, read_merged_count=0, write_merged_count=0, busy_time=81997), 'dm-1': sdiskio(read_count=126, write_count=0, read_bytes=1093632, write_bytes=0, read_time=373, write_time=0, read_merged_count=0, write_merged_count=0, busy_time=367)}
-\>>>
+>>>
 ```
 
 ### 磁盘IO信息
@@ -1077,10 +1077,10 @@ sdiskio(read_count=16896, write_count=21325, read_bytes=428721664, write_bytes=7
 ## Python实践6——使用psutil系统性能信息模块获取当前系统网络信息
 
 ```shell
-\>>> import psutil
-\>>> psutil.net_io_counters()
+>>> import psutil
+>>> psutil.net_io_counters()
 snetio(bytes_sent=754606, bytes_recv=78983995, packets_sent=4592, packets_recv=9383, errin=0, errout=0, dropin=0, dropout=0)
-\>>> psutil.net_io_counters(pernic=True)
+>>> psutil.net_io_counters(pernic=True)
 {'lo': snetio(bytes_sent=0, bytes_recv=0, packets_sent=0, packets_recv=0, errin=0, errout=0, dropin=0, dropout=0), 'eth1': snetio(bytes_sent=0, bytes_recv=115672, packets_sent=0, packets_recv=2220, errin=0, errout=0, dropin=0, dropout=0), 'eth0': snetio(bytes_sent=756370, bytes_recv=78870967, packets_sent=4606, packets_recv=7196, errin=0, errout=0, dropin=0, dropout=0)}
 ```
 
@@ -1100,23 +1100,23 @@ snetio(bytes_sent=754606, bytes_recv=78983995, packets_sent=4592, packets_recv=9
 
 
 ```shell
-\>>> import subprocess
-\>>> subprocess.call("who",shell=True)
+>>> import subprocess
+>>> subprocess.call("who",shell=True)
 root     pts/0        2016-10-18 16:55 (172.25.0.250)
 root     pts/1        2016-10-18 17:22 (172.25.0.250)
 0
-\>>> import psutil
-\>>> psutil.users()
+>>> import psutil
+>>> psutil.users()
 [suser(name='root', terminal='pts/0', host='172.25.0.250', started=1476780928.0), suser(name='root', terminal='pts/1', host='172.25.0.250', started=1476782592.0)]
-\>>> u=psutil.users()
-\>>> print u[0]
+>>> u=psutil.users()
+>>> print u[0]
 suser(name='root', terminal='pts/0', host='172.25.0.250', started=1476780928.0)
-\>>> print u[1]
+>>> print u[1]
 suser(name='root', terminal='pts/1', host='172.25.0.250', started=1476782592.0)
-\>>> a=u[::-1]
-\>>> print a
+>>> a=u[::-1]
+>>> print a
 [suser(name='root', terminal='pts/1', host='172.25.0.250', started=1476782592.0), suser(name='root', terminal='pts/0', host='172.25.0.250', started=1476780928.0)]
-\>>> psutil.boot_time()
+>>> psutil.boot_time()
 1476780907.0
 ```
 ### 其他系统信息
@@ -1129,55 +1129,55 @@ psutil模块还支持获取用户登录、开机时间等信息
 ## Python实践8——使用psutil系统性能信息模块获取当前系统进程信息
 
 ```shell
-\>>> import psutil
-\>>> psutil.pids()
+>>> import psutil
+>>> psutil.pids()
 [1, 2, 3, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 33, 34, 35, 36, 37, 45, 46, 47, 49, 50, 51, 70, 100, 267, 269, 271, 272, 274, 275, 278, 281, 282, 358, 359, 370, 371, 384, 385, 386, 387, 388, 389, 390, 467, 480, 488, 508, 529, 536, 537, 538, 539, 540, 542, 543, 550, 551, 552, 553, 554, 569, 592, 594, 595, 597, 599, 607, 610, 614, 663, 704, 705, 988, 1191, 1193, 1198, 1204, 1586, 1604, 2339, 2344, 2376, 2451, 9480, 9482, 9486, 9548, 9550, 9555]
-\>>> psutil.pids()
+>>> psutil.pids()
 [1, 2, 3, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 33, 34, 35, 36, 37, 45, 46, 47, 49, 50, 51, 70, 100, 267, 269, 271, 272, 274, 275, 278, 281, 282, 358, 359, 370, 371, 384, 385, 386, 387, 388, 389, 390, 467, 480, 488, 508, 529, 536, 537, 538, 539, 540, 542, 543, 550, 551, 552, 553, 554, 569, 592, 594, 595, 597, 599, 607, 610, 614, 663, 704, 705, 988, 1191, 1193, 1198, 1204, 1586, 1604, 2339, 2344, 2376, 2451, 9480, 9482, 9486, 9548, 9550, 9555, 9564, 9571, 9581]
-\>>> psutil.Process(9581)
+>>> psutil.Process(9581)
 <psutil.Process(pid=9581, name='kworker/1:0') at 39994576>
-\>>> psutil.Process(9564)
+>>> psutil.Process(9564)
 <psutil.Process(pid=9564, name='yum') at 39994384>
-\>>> p=psutil.Process(9564)
-\>>> p.name()
+>>> p=psutil.Process(9564)
+>>> p.name()
 'yum'
-\>>> p.exe
+>>> p.exe
 <bound method Process.exe of <psutil.Process(pid=9564, name='yum') at 39994576>>
-\>>> p.exe()
+>>> p.exe()
 '/usr/bin/python2.7'
-\>>> p.cwd()
+>>> p.cwd()
 '/root'
-\>>> p.status()
+>>> p.status()
 'disk-sleep'
-\>>> p.create_time()
+>>> p.create_time()
 1476787328.27
-\>>> p.uids()
+>>> p.uids()
 puids(real=0, effective=0, saved=0)
-\>>> p.gids()
+>>> p.gids()
 pgids(real=0, effective=0, saved=0)
-\>>> p.cpu_times()
+>>> p.cpu_times()
 pcputimes(user=17.34, system=4.62, children_user=5.46, children_system=4.68)
-\>>> p.cpu_affinity()
+>>> p.cpu_affinity()
 [0, 1]
-\>>> p.memory_percent()
+>>> p.memory_percent()
 14.738212784994168
-\>>> p.memort_info()
+>>> p.memort_info()
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 AttributeError: 'Process' object has no attribute 'memort_info'
-\>>> p.memore_info()
+>>> p.memore_info()
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 AttributeError: 'Process' object has no attribute 'memore_info'
-\>>> p.memory_info()
+>>> p.memory_info()
 pmem(rss=76226560, vms=435654656, shared=13361152, text=4096, lib=0, data=61382656, dirty=0)
 
-\>>> p=psutil.Process(10242)
-\>>> p.io_counters()
+>>> p=psutil.Process(10242)
+>>> p.io_counters()
 pio(read_count=10, write_count=64, read_bytes=229376, write_bytes=0)
-\>>> p.connections()
+>>> p.connections()
 []
-\>>> p.num_threads()
+>>> p.num_threads()
 1
 ```
 
@@ -1214,21 +1214,21 @@ psutil模块通过psutil.pids()方法获取所有进程PID；psutil.Process()方
 #### popen类的使用
 
 ```shell
-\>>> import psutil
-\>>> from subprocess import PIPE
-\>>> p=psutil.Popen(["/usr/bin/python","-c","print('hello')"],stdout=PIPE)
-\>>> p.name()
+>>> import psutil
+>>> from subprocess import PIPE
+>>> p=psutil.Popen(["/usr/bin/python","-c","print('hello')"],stdout=PIPE)
+>>> p.name()
 'python'
-\>>> p.username()
+>>> p.username()
 'root'
-\>>> p.communicate()
+>>> p.communicate()
 ('hello\n', None)
-\>>> p=psutil.Popen(["ping","172.25.0.250"],stdout=PIPE)
-\>>> p.status()
+>>> p=psutil.Popen(["ping","172.25.0.250"],stdout=PIPE)
+>>> p.status()
 'sleeping'
-\>>> p.uids()
+>>> p.uids()
 puids(real=0, effective=0, saved=0)
-\>>> p.cpu_times()
+>>> p.cpu_times()
 pcputimes(user=0.0, system=0.0, children_user=0.0, children_system=0.0)
 ```
 psutil提供的popen类的作用是获取用户启动的应用程序进程信息,以便跟踪程序进程的运行状态
