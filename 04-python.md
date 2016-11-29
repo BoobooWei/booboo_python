@@ -1390,7 +1390,7 @@ import paramiko
 hostname = ‘192.168.0.1’  
 #端口  
 port = 22  
-\ #用户名  
+#用户名  
 username = ‘Dominic’  
 #密码  
 password = ‘123456’  
