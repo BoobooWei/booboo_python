@@ -2,10 +2,10 @@
 
 [TOC]
 
-## 1 模块
+## 模块
 
 
-### 1.1 Module
+### Module
 
 预先写好的代码，供其他代码使用。
 
@@ -33,7 +33,7 @@ Writing testmod.py
 
 
 
-### 1.2 import
+### import
 
 import引入某个module对象，可使用module.name的方式引用它的全局变量。
 
@@ -44,7 +44,7 @@ testmod.varible1
 
 1
 
-### 1.3 from import
+### from import
 
 from import引入模块中的某个（或全部）变量。
 
@@ -60,7 +60,7 @@ varible2
 2
 
 
-### 1.4 dir
+### dir
 
 列出某个模块的所有变量。
 ```python
@@ -78,7 +78,7 @@ dir(testmod)
  'varible2']
 
 
-### 1.5 模块预编译
+### 模块预编译
 
 当import时，python会试图去编译出pyc文件来。
 
@@ -93,7 +93,7 @@ pyc是被编译过的py文件，加载pyc文件可以跳过语法解析过程。
 具体可以参考这里： https://docs.python.org/3/whatsnew/3.2.html
 
 
-### 1.6 __name__属性
+### __name__属性
 
 模块有一个属性，__name__。当这个属性为'__main__'时，说明当前模块被作为脚本运行。
 
@@ -162,7 +162,7 @@ total 16
 -rw-rw-r-- 1 kiosk kiosk 290 Nov 17 12:17 b.pyc
 ```
 
-### 1.7 package
+### package
 
 到目前为止,你一定已经开始看到了组织你的程序的层次。变量通常在函数内部
 运行。函数和全局变量通常在模块内部运行。如果你想自己组织模块呢?那" 包" 就
@@ -210,7 +210,7 @@ Out[4]: 1
 
 
 
-### 1.8 练习
+### 练习
 
 *    导入系统sys模块
 *    列出sys模块中以s开头并且以e结尾的成员。
@@ -229,7 +229,7 @@ settrace
 ```
 
 
-## 2 第三方软件安装
+## 第三方软件安装
 
 两套基本系统：
 
@@ -238,7 +238,7 @@ settrace
 
 booboo:根据不同的需求，我们可能需要安装不同的第三方软件包（python模块）
 
-### 2.1 setuptools
+### setuptools
 
 系统中必须安装了setuptools
 ```shell
@@ -290,7 +290,7 @@ This package contains the distribute fork of setuptools.
 ```
 
 
-#### 2.1.1 setuptools的使用
+#### setuptools的使用
 
     easy_install 包名
     easy_install 安装包路径。（路径可以填写一个url，系统会从网络上下载安装）
@@ -306,7 +306,7 @@ usage: easy_install [options] requirement_or_url ...
 ```
 
 
-### 2.2 pip
+### pip
 
 系统中必须有pip，具体请咨询管理员。或者下载该文件：
 
@@ -314,12 +314,12 @@ https://bootstrap.pypa.io/get-pip.py
 
 使用python执行安装（注意需要管理员权限）。
 
-#### 2.2.1 pip的使用
+#### pip的使用
 
     pip install 包名
     pip install -r requirements.txt （自动处理里面的所有依赖）
 
-### 2.3 virtualenv
+### virtualenv
 
 功能：用于隔离出一套独立的环境，可以在里面安装各种包，而不对系统造成影响。
 
@@ -412,7 +412,7 @@ Usage: virtualenv [OPTIONS] DEST_DIR
 ```
 
 
-#### 2.3.1 virtualenv的使用
+#### virtualenv的使用
 
 建立环境：virtualenv 目录名
 
@@ -445,14 +445,14 @@ lrwxrwxrwx. 1 root root    3 Oct 17 15:45 lib64 -> lib
 
 ```
 
-#### 2.3.2 访问系统库
+#### 访问系统库
 
 如果在使用virtualenv的同时，也想使用系统中安装的库。那么需要在创建环境时用--system-site-packages参数。
 
 从工程管理角度，我们不推荐这种办法。建议将系统中的所有库在虚环境中再安装一次。
 
 
-#### 2.3.3 虚拟环境的发布
+#### 虚拟环境的发布
 
 使用virtualenv生成的虚拟环境可以迁移到其他机器上，从而允许将运行环境在多台机器上迁移。但是需要注意以下事项：
 
@@ -461,14 +461,14 @@ lrwxrwxrwx. 1 root root    3 Oct 17 15:45 lib64 -> lib
 *    里面所安装的库所依赖的其他系统文件，例如动态运行库，数据文件。如果不在virtualenv里安装的，则每个系统上均需要自行安装。
 
 
-#### 2.3.4 更进一步资料
+#### 更进一步资料
 
 请参考这里：
 
 https://virtualenv.pypa.io/en/stable/userguide/
 
 
-### 2.4 软件包安装和管理建议
+### 软件包安装和管理建议
 
 Python默认情况下会试图将软件包安装到系统里，如果不具备管理员权限，需要使用virtualenv来安装软件包。
 
