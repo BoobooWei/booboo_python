@@ -1,5 +1,7 @@
 #Python 脚本编程及系统大规模自动化运维-Aapache配置
 
+[TOC]
+
 实验要求：用python脚本实现自动替换虚拟主机的DocumentRoot，脚本名为apache_conf_docroot_replace.py
 例如，将www.uplooking.com的网站根目录修改为/var/www/baidu.com
 

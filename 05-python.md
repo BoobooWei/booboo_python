@@ -1,42 +1,7 @@
 #Python 脚本编程及系统大规模自动化运维-面对对象编程
-<!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
-- [面对对象编程](#面对对象编程)
-	- [class](#class)
-		- [类和函数是什么关系呢？](#类和函数是什么关系呢)
-		- [方法](#方法)
-		- [数据](#数据)
-		- [self](#self)
-		- [__init__方法](#init方法)
-		- [练习](#练习)
-		- [类成员和对        string=open(sys.argv[0]).read()
-        infile_string=string.lstrip('#!/usr/bin/env python').strip()
-        with open(file,'w') as infile:
-                infile.write(infile_string)
-象成员](#类成员和对象成员)
-		- [继承](#继承)
-- [prints a blank line](#prints-a-blank-line)
-		- [练习](#练习)
-		- [练习](#练习)
-		- [练习](#练习)
-	- [异常](#异常)
-		- [简介](#简介)
-		- [异常输出阅读](#异常输出阅读)
-		- [异常处理](#异常处理)
-		- [常见异常](#常见异常)
-		- [抛出异常](#抛出异常)
-		- [自定义异常](#自定义异常)
-		- [finally](#finally)
-		- [assert](#assert)
-	- [文档](#文档)
-		- [练习](#练习)
-		- [第三方文档查询](#第三方文档查询)
-	- [Python2和Python3的差异](#python2和python3的差异)
-		- [简述](#简述)
-		- [Python2到3迁移](#python2到3迁移)
-		- [我该用哪个版本/哪个更好](#我该用哪个版本哪个更好)
+[TOC]
 
-<!-- /TOC -->
 ### class
 
 * 定义类

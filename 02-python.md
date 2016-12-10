@@ -1,22 +1,6 @@
 # Python+Unix和Linux系统管理指南学习2-Python的核心数据类型
-<!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
-- [Python+Unix和Linux系统管理指南学习2-Python的核心数据类型](#pythonunix和linux系统管理指南学习2-python的核心数据类型)
-	- [Python的核心数据类型](#python的核心数据类型)
-	- [列表](#列表)
-		- [列表的运算](#列表的运算)
-		- [列表操作](#列表操作)
-		- [注意引用的问题](#注意引用的问题)
-	- [元组](#元组)
-	- [字典](#字典)
-	- [集合](#集合)
-	- [再议不可变对象](#再议不可变对象)
-	- [课后习题](#课后习题)
-		- [列表和字典](#列表和字典)
-		- [元组](#元组)
-		- [总习题](#总习题)
-
-<!-- /TOC -->
+[TOC]
 
 ## Python的核心数据类型
 
