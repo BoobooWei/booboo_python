@@ -100,18 +100,18 @@ pyc是被编译过的py文件，加载pyc文件可以跳过语法解析过程。
 模块被作为以脚本运行时，不生成pyc文件（因为不是import）。
 
 ```shell
-[root@rhel6 ~] vim /root/pythondir/a.py
+[root@workstation0 ~]# vim /root/pythondir/a.py
 #!/usr/bin/env python
 def max(x,y):
         if x>y:return x
         else:return y
 if __name__=="__main__":
         print max(2,1)
-[root@rhel6 ~] python a.py
+[root@workstation0 ~]# python a.py
 2
-[root@rhel6 ~] ls
+[root@workstation0 ~]# ls
 a.py
-[root@rhel6 ~] python
+[root@workstation0 ~]# python
 Python 2.7.5 (default, Oct 11 2015, 17:47:16)
 [GCC 4.8.3 20140911 (Red Hat 4.8.3-9)] on linux2
 Type "help", "copyright", "credits" or "license" for more information.
@@ -125,12 +125,12 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> a.max(5,2)
 5
 >>> exit()
-[root@rhel6 ~] ll
+[root@workstation0 ~]# ll
 total 8
 -rw-rw-r-- 1 root root 111 Nov 17 12:09 a.py
 -rw-rw-r-- 1 root root 290 Nov 17 12:11 a.py
 
-[root@rhel6 ~] vim b.py
+[root@workstation0 ~]# vim b.py
 #!/usr/bin/env python
 def min(x,y):
 	if x<y:return x
@@ -139,12 +139,12 @@ if __name__=="__main__":
 	print min(3,1)
 [root@rhel6 ~] python b.py
 1
-[root@rhel6 ~] ll
+[root@workstation0 ~]# ll
 total 12
 -rw-rw-r-- 1 kiosk kiosk 111 Nov 17 12:09 a.py
 -rw-rw-r-- 1 kiosk kiosk 290 Nov 17 12:11 a.pyc
 -rw-rw-r-- 1 kiosk kiosk 110 Nov 17 12:17 b.py
-[root@rhel6 ~] python
+[root@workstation0 ~]# python
 Python 2.7.5 (default, Oct 11 2015, 17:47:16)
 [GCC 4.8.3 20140911 (Red Hat 4.8.3-9)] on linux2
 Type "help", "copyright", "credits" or "license" for more information.
@@ -154,7 +154,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> b.min(4,1)
 1
 >>> exit()
-[root@rhel6 ~] ll
+[root@workstation0 ~]# ll
 total 16
 -rw-rw-r-- 1 kiosk kiosk 111 Nov 17 12:09 a.py
 -rw-rw-r-- 1 kiosk kiosk 290 Nov 17 12:11 a.pyc
@@ -180,14 +180,14 @@ total 16
 > 课堂练习：创建一个pythondir包，其中包含了模块a和模块b
 
 ```bash
-[root@rhel6 ~] touch /root/pythondir/__init__.py
-[root@rhel6 ~] ipython
+[root@workstation0 ~]# touch /root/pythondir/__init__.py
+[root@workstation0 ~]# ipython
 In [2]: import sys
 
 In [3]: print sys.path
 ['', '/usr/bin', '/usr/lib64/python27.zip', '/usr/lib64/python2.7', '/usr/lib64/python2.7/plat-linux2', '/usr/lib64/python2.7/lib-tk', '/usr/lib64/python2.7/lib-old', '/usr/lib64/python2.7/lib-dynload', '/usr/lib64/python2.7/site-packages', '/usr/lib64/python2.7/site-packages/gtk-2.0', '/usr/lib/python2.7/site-packages', '/usr/lib/python2.7/site-packages/IPython/extensions']
 
-[root@rhel6 ~] ipython
+[root@workstation0 ~]# ipython
 Python 2.7.5 (default, Oct 11 2015, 17:47:16)
 Type "copyright", "credits" or "license" for more information.
 
@@ -496,10 +496,10 @@ Python默认情况下会试图将软件包安装到系统里，如果不具备�
 注意：安装库时需要编译的，系统中必须有编译工具链。
 
 ```shell
-[root@dbproxy0 ~]# yum list|grep python-vir
+[root@workstation0 ~]# yum list|grep python-vir
 Repodata is over 2 weeks old. Install yum-cron? Or run: yum makecache fast
 python-virtualenv.noarch                1.10.1-2.el7               rhel_dvd     
-[root@dbproxy0 ~]# yum install -y python-virtualenv
+[root@workstation0 ~]# yum install -y python-virtualenv
 Loaded plugins: product-id, search-disabled-repos, subscription-manager
 This system is not registered to Red Hat Subscription Management. You can use subscription-manager to register.
 Repodata is over 2 weeks old. Install yum-cron? Or run: yum makecache fast
@@ -573,26 +573,26 @@ Dependency Installed:
   python-setuptools.noarch 0:0.9.8-4.el7                                        
 
 Complete!
-[root@dbproxy0 ~]# mkdir /tmp/python
-[root@dbproxy0 ~]# virt
+[root@workstation0 ~]# mkdir /tmp/python
+[root@workstation0 ~]# virt
 virtualenv      virtualenv-2.7  virt-what       
-[root@dbproxy0 ~]# virtalenv /tmp/python
+[root@workstation0 ~]# virtalenv /tmp/python
 -bash: virtalenv: command not found
-[root@dbproxy0 ~]# virtualenv /tmp/python
+[root@workstation0 ~]# virtualenv /tmp/python
 New python executable in /tmp/python/bin/python
 Installing Setuptools..............................................................................................................................................................................................................................done.
 Installing Pip.....................................................................................................................................................................................................................................................................................................................................done.
-[root@dbproxy0 ~]# cd /tmp/python
-[root@dbproxy0 python]# ls
+[root@workstation0 ~]# cd /tmp/python
+[root@workstation0 python]# ls
 bin  include  lib  lib64
-[root@dbproxy0 python]# source bin/
+[root@workstation0 python]# source bin/
 activate          activate_this.py  pip               python2
 activate.csh      easy_install      pip-2.7           python2.7
 activate.fish     easy_install-2.7  python            
-[root@dbproxy0 python]# source bin/activate
-(python)[root@dbproxy0 python]#
-(python)[root@dbproxy0 python]#
-(python)[root@dbproxy0 python]# which pip
+[root@workstation0 python]# source bin/activate
+(python)[root@workstation0 python]#
+(python)[root@workstation0 python]#
+(python)[root@workstation0 python]# which pip
 /tmp/python/bin/pip
 ```
 
@@ -607,15 +607,15 @@ pidof、tty、taskset、pmap等。
 
 ```shell
 # 第一次尝试安装时，报错说缺少gcc
-(python)[root@dbproxy0 python]# wget psutil-4.3.1.tar.gz
-(python)[root@dbproxy0 python]# ls
+(python)[root@workstation0 python]# wget psutil-4.3.1.tar.gz
+(python)[root@workstation0 python]# ls
 anaconda-ks.cfg  psutil-4.3.1  psutil-4.3.1.tar.gz
-(python)[root@dbproxy0 python]# cd psutil-4.3.1
-(python)[root@dbproxy0 python]# ls
+(python)[root@workstation0 python]# cd psutil-4.3.1
+(python)[root@workstation0 python]# ls
 appveyor.yml  DEVGUIDE.rst  HISTORY.rst  INSTALL.rst  make.bat  MANIFEST.in  psutil           README.rst  setup.cfg  tox.ini
 CREDITS       docs          IDEAS        LICENSE      Makefile  PKG-INFO     psutil.egg-info  scripts     setup.py
 
-(python)[root@dbproxy0 python]# pip install psutil
+(python)[root@workstation0 python]# pip install psutil
 Downloading/unpacking psutil
   Downloading psutil-4.3.1.tar.gz (315kB): 315kB downloaded
   Running setup.py egg_info for package psutil
@@ -704,7 +704,7 @@ Command /tmp/python/bin/python -c "import setuptools;__file__='/tmp/python/build
 Storing complete log in /root/.pip/pip.log
 
 # 安装gcc软件
-(python)[root@dbproxy0 python]# yum install -y gcc*
+(python)[root@workstation0 python]# yum install -y gcc*
 Loaded plugins: product-id, search-disabled-repos, subscription-manager
 This system is not registered to Red Hat Subscription Management. You can use subscription-manager to register.
 Resolving Dependencies
@@ -865,7 +865,7 @@ Dependency Installed:
 Complete!
 
 # 再次安装
-(python)[root@dbproxy0 python]# pip install psutil
+(python)[root@workstation0 python]# pip install psutil
 Downloading/unpacking psutil
   Downloading psutil-4.3.1.tar.gz (315kB): 315kB downloaded
   Running setup.py egg_info for package psutil
@@ -884,7 +884,7 @@ Installing collected packages: psutil
 Successfully installed psutil
 Cleaning up...
 # 安装模块成功，进入尝试加载模块psutil
-(python)[root@dbproxy0 python]# python
+(python)[root@workstation0 python]# python
 Python 2.7.5 (default, Oct 11 2015, 17:47:16)
 [GCC 4.8.3 20140911 (Red Hat 4.8.3-9)] on linux2
 Type "help", "copyright", "credits" or "license" for more information.
@@ -898,7 +898,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 root@172.25.0.15's password:
 X11 forwarding request failed on channel 0
 Last login: Tue Oct 18 16:55:43 2016 from 172.25.0.250
-[root@dbproxy0 ~]# python
+[root@workstation0 ~]# python
 Python 2.7.5 (default, Oct 11 2015, 17:47:16)
 [GCC 4.8.3 20140911 (Red Hat 4.8.3-9)] on linux2
 Type "help", "copyright", "credits" or "license" for more information.
@@ -912,13 +912,13 @@ ImportError: No module named psutil
 ## Python实践3——使用psutil系统性能信息模块获取当前物理内存总大小及已使用大小
 
 ```shell
-[root@dbproxy0 ~]# free -h
+[root@workstation0 ~]# free -h
               total        used        free      shared  buff/cache   available
 Mem:           488M        102M         69M        4.4M        316M        344M
 Swap:          511M          0B        511M
-[root@dbproxy0 ~]# free -h|awk '/Mem/{print$2}'
+[root@workstation0 ~]# free -h|awk '/Mem/{print$2}'
 488M
-[root@dbproxy0 ~]# free -h|awk '/Mem/{print$3}'
+[root@workstation0 ~]# free -h|awk '/Mem/{print$3}'
 102M
 ```
 

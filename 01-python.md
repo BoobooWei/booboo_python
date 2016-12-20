@@ -48,7 +48,7 @@ python是简单的、免费的（BSD）、面向对象的、可读性非常强�
 
 速度：编译型语言快
 
-### 当前使用python编写程序
+### 当前使用python编写的程序
 
 *	yum
 * gedit
@@ -465,16 +465,17 @@ ipython是工具包中最常使用的一个工具。掌握了这个神奇的shel
 2. 社区 http://lists.ipython.scipy.org/mailman/listinfo/ipython-user
 3. wiki http://ipython.scipy.org/moin
 4. ipython名人	Fernando Perez\Ville Vainio
-5. 安装ipython	http://ipython.scipy.org/dist
+5. 安装ipython	(公网地址)http://ipython.scipy.org/dist
+				(内网地址)http://example.com/python/
 		源码安装	python setup.py install
 		rpm包	yum install -y ipython
 6. 运行ipython	ipython
 
 ```shell
-[root@foundation0 ~]# wget https://github.com/downloads/ipython/ipython/ipython-0.13.1.tar.gz
-[root@foundation0 ~]# tar -xf ipython-0.13.1.tar.gz
-[root@foundation0 ~]# cd ipython-0.13.1/
-[root@foundation0 ipython-0.13.1]# ls
+[root@workstation0 ~]# wget https://github.com/downloads/ipython/ipython/ipython-0.13.1.tar.gz
+[root@workstation0 ~]# tar -xf ipython-0.13.1.tar.gz
+[root@workstation0 ~]# cd ipython-0.13.1/
+[root@workstation0 ipython-0.13.1]# ls
 docs  IPython  ipython.py  PKG-INFO  README.rst  scripts  setupbase.py  setupegg.py  setupext  setup.py
 
 [root@foundation0 ipython-0.13.1]# python setup.py install
@@ -494,7 +495,7 @@ OPTIONAL DEPENDENCIES
               readline: yes
 
 
-[root@foundation0 ipython-0.13.1]# ipython
+[root@workstation0 ipython-0.13.1]# ipython
 Python 2.7.5 (default, Oct 11 2015, 17:47:16)
 Type "copyright", "credits" or "license" for more information.
 
@@ -505,69 +506,12 @@ help      -> Python's own help system.
 object?   -> Details about 'object', use 'object??' for extra details.
 
 In [1]:
-In [1]: print 1*21.拓展阅读
-python官方文档
-http://wiki.woodpecker.org.cn/moin/March_Liu/PyTutorial
-中文免费
-基础入门：A byte of Python
-查阅字典：python学习手册
-开发型运维：python+Unix和Linux系统管理指南
-	python自动化运维
-===================================
-2.软件位置
-http://172.25.254.254/content/20161017/Python-%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8B-20161117/soft/
-
-3.学习的框架
-1）python简介
-2）ipython
-3）数据类型
-	数字
-	字符串
-	文件
-	列表
-	元组
-	字典
-	集合
-4）流程控制语句
-	if
-	for
-	while
-	break\continue\pass
-	range
-5）函数
-6）模块
-7) 类class
-
--------------------------------
-1 python的简介
-python是简单的、免费的（BSD）、面向对象的、可读性非常强、交互式的解释型语言
-
-* 编译型语言和解释型语言的区别
-编译型语言：c c++ java
-解释型语言：bash python
-
-编译的过程 c语言--------》机器语言 二进制0 1
-解释的过程 bash--》字符码（中间过程）====》机器语言
-
-速度：编译型语言快
-
-2.python的版本
-版本系列：2.7 / 3.5
-rhel7 2.7.5
-一般高版本兼容低版本
-但是python的高版本不一定兼容低版本
-
-3.当前使用python编写程序
-	yum
-	gedit
-	youtube
-	NAS
-	豆瓣
+In [1]: print 1*2
 2
 
 In [2]: exit()
-
 ```
+
 
 ### ipython的特性
 
@@ -738,7 +682,7 @@ In [2]: print math.pi
 3.14159265359
 ```
 
-#### random模块
+### random模块
 
 ```python
 In [5]: import random
