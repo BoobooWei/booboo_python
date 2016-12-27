@@ -1641,3 +1641,208 @@ Out[27]: 10
 1. `r` 读取输入
 2. pickle模块
 3. copy模块，调用`copy.deepcopy(x)`深拷贝
+
+## 实践项目
+
+### python和bash的对比
+
+```shell
+	实验1——交互式：修改student用户的默认登陆shell为python
+	实验2——非交互式：写一个脚本实现以下功能
+			1）显示内核版本
+			2）显示磁盘信息
+	实验3——函数对比：
+			1）将bash脚本中的不同功能定义为函数，并调用			
+			2）将python脚本中的不同功能定义为函数，并调用			
+			3）定义main函数，实现所有功能，并调用
+
+	实验四——拓展脚本：
+			修改python和bash代码中的系统调用程序，将其变成自己的内容。
+
+			可以去尝试实现以下功能：
+
+			    1）查看系统发行版本cat /etc/redhat-release
+			    2）查看系统内核版本uname -r
+			    3）查看系统磁盘信息df -h
+			    4）查看当前系统用户who
+ 			    5）查看系统运行时间uptime
+ 			    6）查看selinux的状态getenforce
+  			    7）查看内存信息free -h
+    			    8）查看网络状况ifconfig
+```
+
+### ipython的安装
+
+```shell
+		实践1：安装ipython
+				下载源码安装包
+				python setup.py install
+```
+
+### 字符串实践
+
+```shell
+	tel_string = '+86 10010 +21 20145 +45 15264'
+	tel_list = tel_string.split()
+	for i in tel_list:
+		if i.startswith('+'):
+			print i
+```
+
+### 字符编码问题
+
+```shell
+In [108]: print u'你好'.encode('utf-8')
+你好
+
+In [109]: print str_b
+你好
+
+In [110]: print '你好'.encode('utf-8')
+---------------------------------------------------------------------------
+UnicodeDecodeError                        Traceback (most recent call last)
+<ipython-input-110-12163d00438d> in <module>()
+----> 1 print '你好'.encode('utf-8')
+
+UnicodeDecodeError: 'ascii' codec can't decode byte 0xe4 in position 0: ordinal not in range(128)
+
+In [112]: '你好'.decode('utf-8')
+Out[112]: u'\u4f60\u597d'
+```
+
+### 获取帮助
+
+```shell
+[root@workstation0 ~]# python
+Python 2.7.5 (default, Oct 11 2015, 17:47:16) 
+[GCC 4.8.3 20140911 (Red Hat 4.8.3-9)] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> help()
+
+Welcome to Python 2.7!  This is the online help utility.
+
+If this is your first time using Python, you should definitely check out
+the tutorial on the Internet at http://docs.python.org/2.7/tutorial/.
+
+Enter the name of any module, keyword, or topic to get help on writing
+Python programs and using Python modules.  To quit this help utility and
+return to the interpreter, just type "quit".
+
+To get a list of available modules, keywords, or topics, type "modules",
+"keywords", or "topics".  Each module also comes with a one-line summary
+of what it does; to list the modules whose summaries contain a given word
+such as "spam", type "modules spam".
+
+help> print
+
+help> re
+
+help> exit
+
+help> q
+
+You are now leaving help and returning to the Python interpreter.
+If you want to ask for help on a particular object directly from the
+interpreter, you can type "help(object)".  Executing "help('string')"
+has the same effect as typing a particular string at the help> prompt.
+```
+
+### 从键盘输入
+
+```shell
+bash
+#!/bin/bash
+read -p "plz input yourname:" name
+echo "your name is $name"
+```
+
+```python
+#!/usr/bin/env python
+
+try:
+	name=raw_input('plz input yourname')
+excapt:
+	name=input('plz input yourname')
+print 'your name is {}'.format(name)
+```
+
+### python脚本写文件
+
+用python脚本写文件，要求如下:
+
+/tmp/useraddlist
+```shell
+dabao 888 xuexi,it uplooking
+lucy 889 sales,it uplooking
+lily 899 pro,aa,bb uplooking
+```
+
+脚本如下：
+```python
+#!/usr/bin/env python
+
+a_file = open('/tmp/useraddlist','w')
+a_file.write('''dabao 888 xuexi,it uplooking
+lucy 889 sales,it uplooking
+lily 899 pro,aa,bb uplooking''')
+a_file.close()
+print open('/tmp/useraddlist').read()
+```
+
+或者通过with as
+
+```python
+#!/usr/bin/env python
+with open('/tmp/useraddlist','w') as a_file:
+        a_file.write('dabao 888 xuexi,it uplooking\nlucy 889 sales,it uplooking\nlily 899 pro,aa,bb uplooking')
+print open('/tmp/useraddlist').read()
+```
+
+执行结果如下：
+
+```shell
+[root@workstation0 python]# python useraddlist.py 
+dabao 888 xuexi,it uplooking
+lucy 889 sales,it uplooking
+lily 899 pro,aa,bb uplooking
+```
+
+### 打印文件中的指定信息
+
+得到每一行中的用户名、uid、初始组、附加组和密码，打印到屏幕上
+
+```shell
+username is ;uid is ;groups is ;password is 
+初始组是
+附加组是
+```
+
+脚本如下：
+```python
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+a_file = open('/tmp/useraddlist','r')
+a_list = a_file.readlines()
+for i in a_list:
+	line_list = i.split()
+	print "username is {},uid is {},groups are {},password is {}".format(line_list[0],line_list[1],line_list[2],line_list[3])
+	g_str = line_list[2]
+	g_list = g_str.split(',')
+	print "初始组是：{}".format(g_list[0])
+	print "附加组是：{}".format('和'.join(g_list[1:]))
+```
+
+运行结果为：
+
+```shell
+username is dabao,uid is 888,groups are xuexi,it,password is uplooking
+初始组是：xuexi
+附加组是：it
+username is lucy,uid is 889,groups are sales,it,password is uplooking
+初始组是：sales
+附加组是：it
+username is lily,uid is 899,groups are pro,aa,bb,password is uplooking
+初始组是：pro
+附加组是：aa和bb
+```
