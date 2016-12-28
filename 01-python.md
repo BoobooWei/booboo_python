@@ -69,16 +69,11 @@ python是简单的、免费的（BSD）、面向对象的、可读性非常强�
 支持系统：几乎全部
 
 
-Python 语言是少有的一种可以称得上即简单又功能强大的编程语言。你将惊喜地
-发现 Python 语言是多么地简单,它注重的是如何解决问题而不是编程语言的语法和
-结构。
+Python 语言是少有的一种可以称得上即简单又功能强大的编程语言。你将惊喜地发现 Python 语言是多么地简单，它注重的是如何解决问题而不是编程语言的语法和结构。
 
 Python 语言的官方介绍是:
 
-Python 是一种简单易学,功能强大的编程语言,它有高效率的高层数据结构,简
-单而有效地实现面向对象编程。 Python 简洁的语法和对动态输入的支持,再加
-上解释性语言的本质,使得它在大多数平台上的许多领域都是一个理想的脚本语
-言,特别适用于快速的应用程序开发。
+Python 是一种简单易学，功能强大的编程语言，它有高效率的高层数据结构,简单而有效地实现面向对象编程。 Python 简洁的语法和对动态输入的支持，再加上解释性语言的本质，使得它在大多数平台上的许多领域都是一个理想的脚本语言，特别适用于快速的应用程序开发。
 
 ### python的版本
 
@@ -86,9 +81,7 @@ Python 是一种简单易学,功能强大的编程语言,它有高效率的高�
 
 rhel7 2.7.5
 
-一般高版本兼容低版本
-
-但是python的高版本不一定兼容低版本
+一般高版本兼容低版本，但是python的高版本不一定兼容低版本
 
 ### python的中心哲学
 ```shell
@@ -129,17 +122,20 @@ Namespaces are one honking great idea -- let's do more of those!
 
 下面的例子其实看不出区别多大，但是我们能看到不同的shell做同样一件事情，使用的命令并不相同。
 
+Shell:
 ```shell
-[root@workstation0 ~]# echo "hello"
+$ echo "hello"
 hello
-------------------------------------
+```
+Python:
+```python
 >>> print "hello"
 hello
 ```
 
 ### 在python中执行命令
 
-在bash中执行`ls -l /tmp`,那么在python中该如何操作呢？
+在bash中执行`ls -l /tmp`，那么在python中要调用系统命令该如何操作呢？
 ```shell
 >>> import subprocess
 >>> subprocess.call(['ls','-l','/tmp'])
@@ -166,7 +162,7 @@ bash使用非常简单的`ls -l`就能达到目的，而python需要去加载模
 [root@workstation0 ~]# cat sysinfo.py
 #!/usr/bin/env python
 # encoding=utf-8
-#A System Information Gathering Script
+# A System Information Gathering Script
 import subprocess
 
 #Command 1
@@ -225,17 +221,16 @@ tmpfs           100M     0  100M   0% /run/user/0
 
 对比bash脚本和python脚本，我们发现他们非常相似，而结果是一摸一样的。
 需要注意的是，在subproce.call中将命令与参数完全分开的写法只是一种，还可以像下面一样：
-
+```python
 subprocess.call("df -h",shell=True)
-
-subprocess模块包含了使用python实现系统调用的代码。
+```
+`subprocess`模块包含了使用python实现系统调用的代码。
 我们除了使用系统的模块，还可以自己创建自己的模块或文件，供以后使用。
 
 
-### 初学者可以使用ipython工具来使用
+### Ipython-Python学习和应用神器
 
-ipython有一些特性，比如能够使用tab键补全，可以使用?来获取帮助
-ipython中可以使用help()来获取帮助
+ipython有一些特性，比如能够使用tab键补全，可以使用`?`来获取帮助ipython中可以使用help()来获取帮助
 
 ---
 
@@ -258,8 +253,8 @@ bash脚本和python脚本：将命令放在文本中一条接一条地连续执�
 
 ---
 
-* bash定义函数：{}
-* python定义行数：嵌套代码-统一的缩进（tab或四个空格）
+* bash定义函数：`fun(){}`
+* python定义函数：`def fun():` 嵌套代码-统一的缩进（四个空格）
 
 ```python
 >>> def pyfunc():
@@ -293,15 +288,13 @@ hello function
 hello function
 ```
 
-我们发现bash和python在函数定义上语法不同，for循环语法也不同
-但是能看到python更简洁。
+我们发现bash和python在函数定义上语法不同，for循环语法也不同但是能看到python更简洁。
 
 ### 课堂练习
 
 #### 将sysinfo.py转变成函数:sysinfo_func.py
 
 ```shell
-[root@workstation0 ~]# cat sysinfo_func.py
 #!/usr/bin/env python
 # encoding=utf-8
 #A System Information Gathering Script
@@ -331,8 +324,7 @@ main()
 
 #### 将sysinfo.sh转变成函数:sysinfo_func.sh
 
-对比sysinfo_func.sh和sysinfo_func.py，可以看python和bash有很多
-相似之处。
+对比sysinfo_func.sh和sysinfo_func.py，可以看python和bash有很多相似之处。
 
 到目前为止，我们已经是一名能够使用bash或python编写简单函数的程序员了。
 作为程序员，编写程序的过程就是学习的过程。
@@ -340,14 +332,15 @@ main()
 #### 修改python和bash代码中的系统调用程序，将其变成自己的内容。
 
 可以去尝试实现以下功能：
-*	1）查看系统发行版本`cat /etc/redhat-release`
-*	2）查看系统内核版本`uname -r`
-*	3）查看系统磁盘信息`df -h`
-*	4）查看当前系统用户`who`
-*	5）查看系统运行时间`uptime`
-*	6）查看selinux的状态`getenforce`
-* 	7）查看内存信息`free -h`
-*	8）查看网络状况`ifconfig`
+
+1）查看系统发行版本`cat /etc/redhat-release`
+2）查看系统内核版本`uname -r`
+3）查看系统磁盘信息`df -h`
+4）查看当前系统用户`who`
+5）查看系统运行时间`uptime`
+6）查看selinux的状态`getenforce`
+7）查看内存信息`free -h`
+8）查看网络状况`ifconfig`
 
 #### 在python中import加载之前写的sysinfo.py
 ```python
@@ -368,7 +361,7 @@ tmpfs           100M   16K  100M   1% /run/user/42
 tmpfs           100M     0  100M   0% /run/user/0
 ```
 在python中一个模块对应一个文件，反过来，一个文件对应一个模块，
-我们将脚本文件载入到python中，加载的时候，不用带.py,加了反而会失败。
+我们将脚本文件载入到python中，加载的时候，不用带.py，加了反而会失败。
 
 #### 在python中import加载修改过的sysinfo_func.py，修改内容如下：
 ```shell
@@ -440,12 +433,11 @@ FUNCTIONS
 ['__builtins__', '__doc__', '__file__', '__name__', '__package__', 'disk_func', 'main', 'subprocess', 'uname_func']
 ```
 
-* 编写重用模块的目的：将来在新的脚本中可以重复使用
-
+**编写重用模块的目的：将来在新的脚本中可以重复使用**
 
 ### __name__属性
 
-当__name__等于'__main__'时，说明当前模块被作为脚本运行。不生成pyc文件（因为不是import）。
+当__name__等于`__main__`时，说明当前模块被作为脚本运行。不生成pyc文件（因为不是import）。
 
 ```shell
 [root@workstation0 ~]# ll
@@ -471,12 +463,12 @@ ipython是工具包中最常使用的一个工具。掌握了这个神奇的shel
 1. ipython	集成了交互式python的诸多优点，性能高于标准的python
 2. 社区 http://lists.ipython.scipy.org/mailman/listinfo/ipython-user
 3. wiki http://ipython.scipy.org/moin
-4. ipython名人	Fernando Perez\Ville Vainio
-5. 安装ipython	(公网地址)http://ipython.scipy.org/dist
-				(内网地址)http://example.com/python/
-		源码安装	`python setup.py install`
-		rpm包	`yum install -y ipython`
-6. 运行ipython	`ipython`
+4. ipython名人Fernando Perez\Ville Vainio
+5. 安装ipython(公网地址)http://ipython.scipy.org/dist
+      		       (内网地址)http://example.com/python/
+   源码安装	`python setup.py install`
+   rpm包	`yum install -y ipython`
+6. 运行ipython`ipython`
 
 ```shell
 [root@workstation0 ~]# wget https://github.com/downloads/ipython/ipython/ipython-0.13.1.tar.gz
@@ -523,66 +515,66 @@ In [2]: exit()
 ### ipython的特性
 
 1. Tab自动完成	补全
-2. 魔力编辑 	magic edit
-3. 配置ipython	~/.ipython/ipy_user_conf.py
+2. 魔力编辑 magic edit
+3. 配置ipython~/.ipython/ipy_user_conf.py
 4. 内置魔力函数
-		%调用魔力函数
-		lsmagic	列出所有魔力函数
-		%<TAB>
-		%函数 ?	查看帮助
+   	%调用魔力函数
+   	lsmagic	列出所有魔力函数
+   	%<TAB>
+   	%函数 ?	查看帮助
 5. Unix Shell
-		alias	别名		`alias booboo netstat -luntp`
-		!	执行shell命令	`!cat /tmp/file`
-		rehash	重哈希（更新PATH)	`__IP.alias_table`
-		rehashx
-		cd	切换工作路径	`cd -q`
-		bookmark 标签-l -d -r	`bookmark t`
-		dhist	查看历史工作列表	`dhist 3 7`从第3个到第6个
-		pwd	显示当前目录
-		可变拓展
-		字符串处理
-		sh profile		简单的配置集，启动ipython时加载
+   	alias	别名		`alias booboo netstat -luntp`
+   	!	执行shell命令	`!cat /tmp/file`
+   	rehash	重哈希（更新PATH)	`__IP.alias_table`
+   	rehashx
+   	cd	切换工作路径	`cd -q`
+   	bookmark 标签-l -d -r	`bookmark t`
+   	dhist	查看历史工作列表	`dhist 3 7`从第3个到第6个
+   	pwd	显示当前目录
+   	可变拓展
+   	字符串处理
+   	sh profile		简单的配置集，启动ipython时加载
 6. 信息搜集
-		page	页less		`page -r p`
-		pdef	显示对象的定义名或函数声明
-		pdoc	显示函数注释
-		pfile	运行对象文件
-		pinfo	提供类型、基础类、命名空间和注释信息等
-		psource	显示定义的元素的源代码
-		psearch	查找python对象
-		who	列出所有交互式对象
-		who_Is	以列表列出所有交互式对象
-		whos	打印出所有交互对象的详细信息
+   	page	页less		`page -r p`
+   	pdef	显示对象的定义名或函数声明
+   	pdoc	显示函数注释
+   	pfile	运行对象文件
+   	pinfo	提供类型、基础类、命名空间和注释信息等
+   	psource	显示定义的元素的源代码
+   	psearch	查找python对象
+   	who	列出所有交互式对象
+   	who_Is	以列表列出所有交互式对象
+   	whos	打印出所有交互对象的详细信息
 7. 历史
-		行支持	readline-based 	`man readline`
-			Ctrl+r	启动搜索（bash中Ctrl+s）
-			Ctrl+a	回到行的开始位置
-			Ctrl+e	光标跳到行的结尾处
-			Ctrl+f	用于删除字符
-			Ctrl+h	向后删除一个字符（相当于backspace）
-			Ctrl+p	将历史记录中的行向后移动一行
-			Ctrl-nt	将历史记录中的行向前移动一行
-		hist	hist command
-			hist	列出所有命令有编号(bash中history)
-			-n	去掉编号
-			-t	返回一个被翻译的命令历史视图
-			-r	准确显示输入了什么
-			-g	搜索
-		历史结果	history results
-			_	上次输出
+   	行支持	readline-based 	`man readline`
+   		Ctrl+r	启动搜索（bash中Ctrl+s）
+   		Ctrl+a	回到行的开始位置
+   		Ctrl+e	光标跳到行的结尾处
+   		Ctrl+f	用于删除字符
+   		Ctrl+h	向后删除一个字符（相当于backspace）
+   		Ctrl+p	将历史记录中的行向后移动一行
+   		Ctrl-nt	将历史记录中的行向前移动一行
+   	hist	hist command
+   		hist	列出所有命令有编号(bash中history)
+   		-n	去掉编号
+   		-t	返回一个被翻译的命令历史视图
+   		-r	准确显示输入了什么
+   		-g	搜索
+   	历史结果	history results
+   		_	上次输出
 8. 自动和快捷方式
-		alias	别名
-		macro	宏
-		reset	删除所有变量
-		run	执行特定的文件
-		save	保存制定的输入行到指定的输出文件中
-		rep	自动启用函数
+   	alias	别名
+   	macro	宏
+   	reset	删除所有变量
+   	run	执行特定的文件
+   	save	保存制定的输入行到指定的输出文件中
+   	rep	自动启用函数
 ---
 ## 变量
 
 ### 变量的定义
 
-### 变量的命名规则
+#### 变量的命名规则
 
 * 标识符的第一个字符必须是字母表中的字母(大写或小写)或者一个下划线(‘_’)。
 * 标识符名称的其他部分可以由字母(大写或小写)、下划线(‘_’)或数字(0-9)组成。
@@ -590,33 +582,33 @@ In [2]: exit()
 * 有效标识符名称的例子有 i 、 __my_name 、 name_23 和 a1b2_c3 。
 * 无效标识符名称的例子有 2things 、 this is spaced out 和 my-name 。
 
-### 变量的分类
+#### 变量的分类
 变量可以有不同类型的值,称之为数据类型。
 
 基本数据类型	数字和字符串
 高级数据类型	列表、元组、字典和集合
 
-> 数据类型
+##### 数据类型
 
 计算机顾名思义就是可以做数学计算的机器，因此，计算机程序理所当然地可以处理各种数值。但是，计算机能处理的远不止数值，还可以处理文本、图形、音频、视频、网页等各种各样的数据，不同的数据，需要定义不同的数据类型。在Python中，能够直接处理的数据类型有以下几种：
 
->> 整数
+###### 整数
 
 Python可以处理任意大小的整数，当然包括负整数，在程序中的表示方法和数学上的写法一模一样，例如：1，100，-8080，0，等等。
 
 计算机由于使用二进制，所以，有时候用十六进制表示整数比较方便，十六进制用0x前缀和0-9，a-f表示，例如：0xff00，0xa5b4c3d2，等等。
 
->> 浮点数
+###### 浮点数
 
 浮点数也就是小数，之所以称为浮点数，是因为按照科学记数法表示时，一个浮点数的小数点位置是可变的，比如，1.23x109和12.3x108是相等的。浮点数可以用数学写法，如1.23，3.14，-9.01，等等。但是对于很大或很小的浮点数，就必须用科学计数法表示，把10用e替代，1.23x109就是1.23e9，或者12.3e8，0.000012可以写成1.2e-5，等等。
 
 整数和浮点数在计算机内部存储的方式是不同的，整数运算永远是精确的（除法难道也是精确的？是的！），而浮点数运算则可能会有四舍五入的误差。
 
->> 字符串
+###### 字符串
 
 字符串是以''或""括起来的任意文本，比如'abc'，"xyz"等等。请注意，''或""本身只是一种表示方式，不是字符串的一部分，因此，字符串'abc'只有a，b，c这3个字符。如果'本身也是一个字符，那就可以用""括起来，比如"I'm OK"包含的字符是I，'，m，空格，O，K这6个字符。
 
->> 布尔值
+###### 布尔值
 
 布尔值和布尔代数的表示完全一致，一个布尔值只有True、False两种值，要么是True，要么是False，在Python中，可以直接用True、False表示布尔值（请注意大小写），也可以通过布尔运算计算出来：
 
@@ -651,12 +643,12 @@ True
 False
 ```
 not运算是非运算，它是一个单目运算符，把True变成False，False变成True：
-
+```python
 >>> not True
-False
+>>> False
 >>> not False
-True
-
+>>> True
+```
 布尔值经常用在条件判断中，比如：
 ```python
 if age >= 18:
@@ -665,7 +657,7 @@ else:
     print 'teenager'
 ```
 
->> 空值
+###### 空值
 
 空值是Python里一个特殊的值，用None表示。None不能理解为0，因为0是有意义的，而None是一个特殊的空值。
 
@@ -731,34 +723,32 @@ In [10]: print random.choice([1,2,3,4])
 
 #### str字符串
 
-|字符串||
-|:-|:-|
-|定义|		一系列字符组成|
-|创建|		'a'or"a"or'''a'''or"""a"""|
-|判断包含|	in;not in|
-|索引搜索|	find();index()|
-|字符切分|	string[index:];string[:index]|
-|判断始末|	startswith();endswith()|
-|删除空白|	lstrip();rstrip();strip()|
-|删除字符|	lstrip('str');rstrip('str');strip('str')|
-|大小写|		upper();lower()|
-|分割符分割|	split()|
-|分割行|		splitline()|
-|数字转化为字符|	'%d'%n|
-|字符转化为数字|	string.atoi();string.atof()|
-|连接字符串|	'str'.join()|
-|Unicode字符串|	u'str';unicode()|
-|re正则表达式|	findall();finditer();match();search();compile();split();sub() |
-
-
+| 字符串        |                                          |
+| :--------- | :--------------------------------------- |
+| 定义         | 一系列字符组成                                  |
+| 创建         | 'a'or"a"or'''a'''or"""a"""               |
+| 判断包含       | in;not in                                |
+| 索引搜索       | find();index()                           |
+| 字符切分       | string[index:];string[:index]            |
+| 判断始末       | startswith();endswith()                  |
+| 删除空白       | lstrip();rstrip();strip()                |
+| 删除字符       | lstrip('str');rstrip('str');strip('str') |
+| 大小写        | upper();lower()                          |
+| 分割符分割      | split()                                  |
+| 分割行        | splitline()                              |
+| 数字转化为字符    | '%d'%n                                   |
+| 字符转化为数字    | string.atoi();string.atof()              |
+| 连接字符串      | 'str'.join()                             |
+| Unicode字符串 | u'str';unicode()                         |
+| re正则表达式    | findall();finditer();match();search();compile();split();sub() |
 
 #### 创建字符串
 
-|引号|解释|
-|:-|:-|
-|单引号|你可以用单引号指定字符串,如 ’Quote me on this’ 。所有的空白,即空格和制表符都照原样保留。|
-|双引号|在双引号中的字符串与单引号中的字符串的使用完全相同,例如 "What’s your name?" 。|
-|利用三引号("""or”’)|你可以指示一个多行的字符串。你可以在三引号中自由的使用单引号和双引号。|
+| 引号             | 解释                                       |
+| :------------- | :--------------------------------------- |
+| 单引号            | 你可以用单引号指定字符串,如 ’Quote me on this’ 。所有的空白,即空格和制表符都照原样保留。 |
+| 双引号            | 在双引号中的字符串与单引号中的字符串的使用完全相同,例如 "What’s your name?" 。 |
+| 利用三引号("""or”’) | 你可以指示一个多行的字符串。你可以在三引号中自由的使用单引号和双引号。      |
 
 ```python
 In [9]: str1='Quote me on this'
@@ -793,8 +783,8 @@ he said "Bond, James Bond."
 字符串是对象，提供了可以被调用以执行操作地方法。
 
 ##### 判断字符串的包含关系in|not
-* in		string2包含sting1，真；否则假
-* not in	string2不包含sting1，真；否则假
+* `in` string2包含sting1，为真；否则为假
+* `not in` string2不包含sting1，为真；否则为假
 
 ```python
 In [16]: name="superman batman wonderwoman green"
@@ -809,8 +799,8 @@ In [19]: 'leo' not in name
 Out[19]: True
 ```
 ##### 子字符串具体位置find()|index()
-* find()	string2.find(string1)返回string1的第一个字符的索引（从0开始），否则返回-1
-* index()	string2.index(string1)返回string1的第一个字符的索引（从0开始），否则异常
+* `find()` string2.find(string1)返回string1的第一个字符的索引（从0开始），否则返回-1
+* `index()` string2.index(string1)返回string1的第一个字符的索引（从0开始），否则异常
 
 ```python
 In [24]: name.index('batman')
@@ -832,8 +822,8 @@ Out[27]: -1
 ```
 
 ##### 字符串切分
-* string[index:]	从索引开始到字符串结尾的每一个字符
-* string[:index]	从字符串开头到索引位置的所有字符
+* `string[index:]` 从索引开始到字符串结尾的每一个字符
+* `string[:index]` 从字符串开头到索引位置的所有字符
 
 ```python
 In [29]: name
@@ -851,8 +841,8 @@ In [33]: name[:batman_index]
 Out[33]: 'superman '
 ```
 ##### 判断字符串的开始和结束字符
-* startswith()
-* endswith()
+* `startswith()`
+* `endswith()`
 
 ```python
 In [37]: name
@@ -872,9 +862,9 @@ Out[41]: False
 ```
 
 ##### 删除空白
-* lstrip()	删除前导空白
-* rstrip()	删除结尾空白
-* strip()	删除前后空白
+* `lstrip()` 删除前导空白
+* `rstrip()` 删除结尾空白
+* `strip()` 删除前后空白
 
 空白包括tab、空格、回车、换行
 
@@ -899,9 +889,9 @@ In [55]: print space.strip()
 Some Non-Sacious Text
 ```
 ##### 删除字符
-* lstrip('str')	删除开头的字符str
-* rstrip('str')	删除结尾的字符str
-* strip('str')	删除str字符串中包含的所有字符
+* `lstrip('str')` 删除开头的字符str
+* `rstrip('str')` 删除结尾的字符str
+* `strip('str')` 删除str字符串中包含的所有字符
 
 ```python
 In [61]: string = "<><><>gt it str<><><>"
@@ -920,8 +910,8 @@ Out[65]: 'gt it str'
 ```
 
 ##### 字符大小写转换
-* upper()	大写
-* lower()	小写
+* `upper()` 大写
+* `lower()` 小写
 
 ```python
 In [70]: uplow = "Hello My Girl"
@@ -934,9 +924,9 @@ Out[72]: 'hello my girl'
 ```
 
 ##### 按照分割符提取字符串
-* split('str')	根据某个指定的分割符对一个字符串进行提取
-* split()	默认以空格为分割
-* split('str',n)以第一次出现的分隔符为分割
+* `split('str')` 根据某个指定的分割符对一个字符串进行提取
+* `split()` 默认以空格为分割
+* `split('str',n)` 以第一次出现的分隔符为分割
 
 ```python
 In [73]: split_string = "pos1,pos2,pos3"
@@ -962,9 +952,9 @@ Out[4]: ['hello', 'yes', 'ok ok,yes yes']
 ```
 
 ##### 提取行
-* splitline()	截取行
+* `splitline()`	截取行
 
-```
+```python
 In [5]: str = '''this
    ...: is
    ...: a
@@ -978,11 +968,11 @@ In [7]: str.splitlines()
 Out[7]: ['this', 'is', 'a ', 'good person', 'en']
 ```
 ##### 将数字转化成字符串
-* %d		整数
-* %f%F		浮点数
-* %e%E		科学计数
-* %g%G		
-* %%
+* `%d` 整数
+* `%f%F` 浮点数
+* `%e%E` 科学计数
+* `%g%G`
+* `%%`
 
 ```python
 In [49]: a=1
@@ -998,8 +988,8 @@ Out[52]: 1
 
 ##### 将字符串转化成数字
 需要加载模块string
-* atoi()	整数
-* atof()	浮点数
+* `atoi()` 整数
+* `atof()` 浮点数
 
 ```python
 In [53]: b='12'
@@ -1041,7 +1031,7 @@ Out[61]: 1.2
 ```
 
 ##### 连接字符串
-* 'str'.join()	将列表中的元素（字符，不能为整数）用str连接起来组成一个字符串
+* `'str'.join()` 将列表中的元素（字符，不能为整数）用str连接起来组成一个字符串
 
 ```python
 In [13]: list_str = '\t'.join(list)
@@ -1072,15 +1062,15 @@ Out[48]: '0+1+2+3+4+5+6+7+8+9'
 ```
 
 ##### Unicode字符串
-* u'str'
-* unicode('str')
+* `u'str'`
+* `unicode('str')`
 
 字符串类型分为 内建的str 和 Unicode
 
-* Unicode是一种标准，包含了所有语言，提供了数字与字符的单一映射。
+* `Unicode`是一种标准，包含了所有语言，提供了数字与字符的单一映射。
 * 计算机处理使用数字，而用户使用字符
 
-> 字符编码
+#####字符编码
 
 我们已经讲过了，字符串也是一种数据类型，但是，字符串比较特殊的是还有一个编码问题。
 
@@ -1114,7 +1104,7 @@ Unicode标准也在不断发展，但最常用的是用两个字节表示一个�
 
 从上面的表格还可以发现，UTF-8编码有一个额外的好处，就是ASCII编码实际上可以被看成是UTF-8编码的一部分，所以，大量只支持ASCII编码的历史遗留软件可以在UTF-8编码下继续工作。
 
-> 搞清楚了ASCII、Unicode和UTF-8的关系，我们就可以总结一下现在计算机系统通用的字符编码工作方式：
+搞清楚了ASCII、Unicode和UTF-8的关系，我们就可以总结一下现在计算机系统通用的字符编码工作方式：
 
 * 在计算机内存中，统一使用Unicode编码，当需要保存到硬盘或者需要传输的时候，就转换为UTF-8编码。
 * 用记事本编辑的时候，从文件读取的UTF-8字符被转换为Unicode字符到内存里，编辑完成后，保存的时候再把Unicode转换为UTF-8保存到文件
@@ -1147,7 +1137,7 @@ abc_Π
 * 把UTF-8编码表示的字符串'xxx'转换为Unicode字符串u'xxx'用decode('utf-8')方法：`'\xe4\xb8\xad\xe6\x96\x87'.decode('utf-8')`
 
 
-```shell
+```
 编码本质速记：
 	没有纯文本
 		文件都是二进制的
@@ -1160,18 +1150,17 @@ abc_Π
 				deccode	ascii===》unicode
 #encoding=utf-8
 #-*- coding: utf-8 -*-
-
 ```
 
 
 ##### re
-* re.findall(re_str,some_str)		根据模式re_str搜索some_str字符串
+* `re.findall(re_str,some_str)`		根据模式re_str搜索some_str字符串
 
 既然python是一个连“电池都包含在内”的语言，所以，正则表达式不再内你一定会失望的。
 
 重点：如何在python中使用正则表达式
 
-bash中我们用正则表达式是“=~”，而python中的正则表达式是来自于库，而不是语言自身的语法特征。因此我们要加载一个模块re。
+bash中我们用正则表达式是`=~`，而python中的正则表达式是来自于库，而不是语言自身的语法特征。因此我们要加载一个模块re。
 
 两种方法使用正则表达式：
 * 1）re模块中的函数
@@ -1233,23 +1222,23 @@ In [25]: raw_p
 Out[25]: '\\b[a-z]+\\b'
 ```
 
-* \b是匹配词边界
-* \d表示数字
-* \w表示希腊数字字符
+* `\b`是匹配词边界
+* `\d`表示数字
+* `\w`表示希腊数字字符
 
 四个主要也是常用的正则表达式方法或函数：
-* findall()	找到所有符合正则的子字符串。
-* finditer()
-* match()	在一系列文字中匹配。
-* search()	在一系列文字中搜索。
-* compile() 	将一个正则表达式“编译”。编译后的正则表达式对象比直接运行拥有更快的速度。
-* split() 	利用正则将文字分裂为多个部分。
-* sub() 	对文本进行替换。
+* `findall()` 返回string中所有与pattern相匹配的全部字串，返回形式为数组。
+* `finditer()` 返回string中所有与pattern相匹配的全部字串，返回形式为迭代器。
+* `match()`  从首字母开始开始匹配，string如果包含pattern子串，则匹配成功，返回Match对象，失败则返回None，若要完全匹配，pattern要以$结尾。
+* `search()` 若string中包含pattern子串，则返回Match对象，否则返回None，注意，如果string中存在多个pattern子串，只返回第一个。
+* `compile()`  将一个正则表达式“编译”。编译后的正则表达式对象比直接运行拥有更快的速度。
+* `split()` 利用正则将文字分裂为多个部分。
+* `sub()` 对文本进行替换。
 
 
 search和match的区别
 
-* match一定从字符串的头开始匹配，search搜索全部文本。search即使用了^，也可能匹配到一个新行。
+* match一定从字符串的头开始匹配，search搜索全部文本。search即使用了`^`，也可能匹配到一个新行。
 * 因此，要匹配头部，或者整个完整字符串，需要用match。而要在文字中搜索，需要用search。
 * 细节：从复杂性上看，理所当然的，match更快。
 
@@ -1274,8 +1263,8 @@ Out[48]: ['', ' this is ', ' okyes ', '']
 
 字符串也有一个split()方法来做切分，注意对比
 
-* string.split('str',nu)
-* re.split('str',string)
+* `string.split('str',nu)`
+* `re.split('str',string)`
 
 ```python
 In [54]: str1
@@ -1294,7 +1283,7 @@ In [59]: str1.split('abb',2)
 Out[59]: ['', ' this is ', ' okyes abb']
 ```
 
-sub('p1','p2',str) 	对文本进行替换。
+`sub('p1','p2',str)` 对文本进行替换。
 
 ```python
 In [67]: str = 'a,b,c,d'
@@ -1332,8 +1321,8 @@ print也可以打印整数，或者计算结果：
 #### 格式化字符串
 
 将变量的值格式化到字符串中，形成新的字符串。
-* print('{0}{1}'.format(a,b))
-* print('%s' % a)
+* `print('{0}{1}'.format(a,b))`
+* `print('%s' % a)`
 
 常用于输出数据内容。
 
@@ -1344,7 +1333,7 @@ my name is shell and the length of name is 5
 >>> print('my name is %s and the length of name is %d' % (name,len(name)))
 my name is shell and the length of name is 5
 ```
-> 练习
+#### 练习
 
     编写一行代码，打印出hello, world。
     假定有变量name，值为你的名字。编写代码打印出hello, [your name]。
@@ -1358,8 +1347,6 @@ hello,booboo
 hello,booboo
 ```
 
-
-
 ### 文件处理file类
 
 学习处理文件的关键是学会如何处理文本数据。经常地，需要处理地文件包含在日志文件、配置文件或数据文件中，当需要对正在分析地数据做进一步处理时，通常要创建一个指定类型地报告文件，或是将数据放入一个文本文件以便日后进一步处理。
@@ -1367,10 +1354,10 @@ hello,booboo
 python有一个称为file的内建类型，该类型可以协助完成所有这些事情。
 
 * 查看关于file类的帮助	`help(file)`
-* 查看file类的方法（函数）	`dir(file)`
-* write()		写入文件
-* read()		读取文件
-* close()		关闭文件
+* 查看file类的方法（函数）`dir(file)`
+* `write()` 写入文件
+* `read()` 读取文件
+* `close()` 关闭文件
 
 ```python
 In [3]: dir(file)
@@ -1428,8 +1415,8 @@ file.
 ```
 
 知识点：
-* open(文件名，文件打开模式，缓冲区大小)是内建函数，不需要import加载。
-* open()的参数中，文件名是必须的；打开模式一般有r（默认读），w（写）
+* `open(文件名，文件打开模式，缓冲区大小)`是内建函数，不需要import加载。
+* `open()`的参数中，文件名是必须的；打开模式一般有r（默认读），w（写）
 
 ```python
 In [25]: outputfile = open('foo_out.txt','w')
@@ -1447,8 +1434,8 @@ In [29]:
 ```
 上面的示例中，使用open()函数以写入的方式打开foo_out.txt文件，并且使用变量outputfile引用新建的可写入文件对象，write()，将文本写入文件中，并使用close()关闭文件。
 
-可以使用“try/finally”代码块将文件进行封闭，使得容错性更好。
-不管有没有异常发生，close()方法也会被包括进去，try块执行完毕之后，不管异常是否发生，finally块都会被执行。
+可以使用`try/finally`代码块将文件进行封闭，使得容错性更好。
+不管有没有异常发生，`close()`方法也会被包括进去，try块执行完毕之后，不管异常是否发生，finally块都会被执行。
 
 ```python
 In [29]: try:
@@ -1461,7 +1448,7 @@ In [30]: open('writeable.txt','r').read()
 Out[30]: 'quick line here\n'
 ```
 
-不用调用close()方法，还可以通过关键词with语句，来关闭文件：
+不用调用`close()`方法，还可以通过关键词with语句，来关闭文件：
 
 ```python
 In [31]: with open('writeable.txt','w') as f:
@@ -1477,18 +1464,18 @@ Out[33]: <closed file 'writeable.txt', mode 'w' at 0x28074b0>
 
 #### 读取文件
 
-* read()		打开文件对象读取数据，返回读取的字节数，并返回一个由这些字节组成的字符串对象
-* readline()	一次读取一行文本
-* readlines()	读入文件中的所有行
+* `read()` 打开文件对象读取数据，返回读取的字节数，并返回一个由这些字节组成的字符串对象
+* `readline()` 一次读取一行文本
+* `readlines()` 读入文件中的所有行
 
 #### 写文件
 
-* write()		写入文件的字符串
-* writelines()	要写入打开文件的序列，序列可以是任何迭代对象类型，例如列表，元组，列表或者是发生器
+* `write()`	写入文件的字符串
+* `writelines()`要写入打开文件的序列，序列可以是任何迭代对象类型，例如列表，元组，列表或者是发生器
 
 #### 额外资源
 
-要了解file对象的更多信息，可以查阅《Learning Python》
+要了解file对象的更多信息，可以查阅[《Learning Python》](https://www.learnpython.org/)
 
 #### 标准输入与输出
 
@@ -1543,8 +1530,6 @@ Out[8]: 'art mysqld\n\n# mysql\n>alter user root@localhost identified by "U:pl:o
 
 ### 数字
 
-> 使用python计算
-
 1. `2*(3+4)`
 2. `2*3+4`
 3. `2+3*4`
@@ -1555,7 +1540,7 @@ Out[8]: 'art mysqld\n\n# mysql\n>alter user root@localhost identified by "U:pl:o
 8. 如何将一个整数显示成八进制、十六进制、二进制的形式？
 9. 如何将一个八进制、十六进制、二进制的字符串转化成平常的整数？
 
->> 习题解答
+>习题解答
 
 ```python
 In [1]: 2*(3+4)
@@ -1607,8 +1592,6 @@ Out[27]: 10
 ```
 ### 字符串
 
-> python完成
-
 1. 字符串`find`方法能用于搜索列表吗？
 2. 字符串切片表达式能于列表吗？
 3. 如何将字符串转成其ASCII码？你如何反向转换，从整数转换成字符串？
@@ -1629,8 +1612,6 @@ Out[27]: 10
 7. 如今不应该使用string模块，而应该使用字符串对象方法调用。string模块已经弃用。
 
 ### 文本
-
-> python完成
 
 1. open文件调用中，默认的处理模式自变量是什么？
 2. 你可能使用什么模块把python对象存储在文件中，而不需要亲自将他们转化成字符串？
