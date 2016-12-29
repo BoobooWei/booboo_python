@@ -1432,3 +1432,256 @@ for file in test_list:
 print "I am superman"
 file_del=call('rm -rf /tmp/.mybb_lock',shell=True)
 ```
+
+课堂练习：
+
+1. 采集班级所有同学的姓名和学号，放在字典中，例如{0:'大宝'，1:'佩琦'}
+2. 全班同学玩杀人游戏，现在需要角色分配，如果学生的总数为3n+1个，则n为平民、杀手、警察的数量，法官只有1个；
+如果学生的总数不是3n+1，而是3n+2或者3n+3，则将多余人加到平民中，例如3n+2，则平民的个数n+1，若为3n+3，则平民的个数n+2
+
+以上需求请用python脚本完成，随机分配角色。
+
+```shell
+0 大宝
+1 江传晖
+3 汤雪磊
+4 周涛
+5 陆俊杰
+6 蒋帅
+7 晏继鹏
+9 龙清胜
+10 杨钧
+11 陆明
+13 巴荣军
+14 黄威
+17 申文涛
+18 胡立俊
+19 徐林
+20 李硕
+23 赖文龙
+24 罗鑫
+25 段永
+26 吴港
+36 李成鑫
+38 许光哲 
+39 黄德鑫
+41 陈军甫
+42 鲁祖兴
+```
+
+```python
+#!/usr/bin/env python
+#encoding=utf_8
+import random
+import sys
+a_dict={0:'大宝',1:'江传晖',3:'汤雪磊',4:'周涛',5:'陆俊杰',6:'蒋帅',7:'晏继鹏',9:'龙清胜',10:'杨钧',11:'陆明',13:'巴荣军',14:'黄威',17:'申文涛',18:'胡立俊',19:'徐林',20:'李硕',23:'赖文龙',24:'罗鑫',25:'段永',26:'吴港',36:'李成鑫',38:'许光哲',39:'黄德鑫',41:'陈军甫',42:'鲁祖兴'}
+#print a_dict
+b_list=a_dict.values()
+n=len(b_list)
+#print n
+if (n-1)%3 == 0:
+	p_num=(n-1)/3
+	j_num=(n-1)/3
+	s_num=(n-1)/3
+elif (n-1)%3 == 1:
+	p_num=(n-1)/3+1
+        j_num=(n-1)/3
+        s_num=(n-1)/3
+else: 
+        p_num=(n-1)/3+2
+        j_num=(n-1)/3
+        s_num=(n-1)/3
+
+#b_list=a_dict.values()
+faguan=random.choice(b_list)
+print "法官：{}".format(faguan)
+b_list.remove(faguan)
+#print b_list
+#print len(b_list)
+
+sys.stdout.write('平民:')
+for x in range(1,p_num+1):
+	p=random.choice(b_list)
+	b_list.remove(p)
+	sys.stdout.write(str(p)+' ')
+print 
+
+sys.stdout.write('警察:')
+for y in range(1,j_num+1):
+        j=random.choice(b_list)
+        b_list.remove(j)
+        sys.stdout.write(str(j)+' ')
+print
+
+sys.stdout.write('杀手:')
+for z in range(1,s_num+1):
+        s=random.choice(b_list)
+        b_list.remove(s)
+        sys.stdout.write(str(s)+' ')
+print
+
+执行结果：
+[root@workstation0 geli]# python game.py
+法官：段永
+平民:蒋帅 汤雪磊 许光哲 大宝 申文涛 晏继鹏 龙清胜 巴荣军 
+警察:黄威 黄德鑫 李硕 杨钧 陆明 徐林 陆俊杰 赖文龙 
+杀手:江传晖 周涛 李成鑫 陈军甫 鲁祖兴 胡立俊 罗鑫 吴港 
+===========================================
+
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+#1.采集班级所有同学的姓名和学号，放在字典中，例如{0:'大宝'，1:'佩琦'}
+import sys
+import random
+
+def createdict():
+        global stu_dict
+        stu_dict = {}
+        a_list = open(sys.argv[1],'r').readlines()
+        for i_str in a_list:
+                i_list=i_str.strip().split()
+                stu_dict[int(i_list[0])] =i_list[1]
+
+def p_random(num,role):
+	global stu_dict
+	for i in range(0,num):
+        	stu_list = stu_dict.keys()
+	        s_p = random.choice(stu_list)
+	        print '{}的扮演者:{}'.format(role,stu_dict[s_p])
+        	del stu_dict[s_p]
+
+
+stu_dict = {}
+createdict()
+p_random(1,'法官')
+print '+++++++++++++++++++++++++++++++'
+num = len(stu_dict)
+j_p_num=s_p_num = num/3
+p_random(j_p_num,'警察')
+print '+++++++++++++++++++++++++++++++'
+p_random(s_p_num,'杀手')
+print '+++++++++++++++++++++++++++++++'
+p_p_num=len(stu_dict)
+for i in stu_dict.values():
+	print '平民的扮演者:{}'.format(i)
+print '+++++++++++++++++++++++++++++++'
+print '法官扮演人数为 1\n警察扮演人数为 {0}\n杀手扮演人数为 {0}\n平明扮演人数为 {1}'.format(j_p_num,p_p_num)
+
+执行结果：
+(booboo)[root@workstation0 pythontest]# python KillPeopleGame.py stu.txt
+法官的扮演者:汤雪磊
++++++++++++++++++++++++++++++++
+警察的扮演者:申文涛
+警察的扮演者:陆明
+警察的扮演者:罗鑫
+警察的扮演者:胡立俊
+警察的扮演者:蒋帅
+警察的扮演者:周涛
+警察的扮演者:晏继鹏
+警察的扮演者:陆俊杰
++++++++++++++++++++++++++++++++
+杀手的扮演者:黄威
+杀手的扮演者:杨钧
+杀手的扮演者:李硕
+杀手的扮演者:徐林
+杀手的扮演者:赖文龙
+杀手的扮演者:江传晖
+杀手的扮演者:许光哲
+杀手的扮演者:陈军甫
++++++++++++++++++++++++++++++++
+平民的扮演者:大宝
+平民的扮演者:龙清胜
+平民的扮演者:巴荣军
+平民的扮演者:段永
+平民的扮演者:吴港
+平民的扮演者:李成鑫
+平民的扮演者:黄德鑫
+平民的扮演者:鲁祖兴
++++++++++++++++++++++++++++++++
+法官扮演人数为 1
+警察扮演人数为 8
+杀手扮演人数为 8
+平明扮演人数为 8
+```
+
+
+实践paramiko——编写python脚本连接到ssh服务器并远程执行命令_密码方式登录
+
+```python
+#!/usr/bin/env python  
+#encoding=utf-8
+
+import paramiko  
+
+#远程服务器  
+hostname = '172.25.0.11'  
+#端口  
+port = 22  
+#用户名  
+username = 'root'  
+#密码  
+password = 'uplooking'  
+#创建SSH连接日志文件（只保留前一次连接的详细日志，以前的日志会自动被覆盖）  
+paramiko.util.log_to_file('paramiko.log')  
+s = paramiko.SSHClient()  
+#允许连接不在know_hosts文件中的主机
+s.set_missing_host_key_policy(paramiko.AutoAddPolicy())  
+#建立SSH连接  
+s.connect(hostname,port,username,password)  
+stdin,stdout,stderr = s.exec_command('df -h')  
+#打印标准输出  
+print stdout.read()  
+s.close()  
+
+运行结果：
+(booboo)[root@workstation0 pythontest]# ls
+KillPeopleGame.py  pssh.py  stu.txt
+(booboo)[root@workstation0 pythontest]# python pssh.py
+Filesystem             Size  Used Avail Use% Mounted on
+/dev/mapper/rhel-root  8.8G  927M  7.9G  11% /
+devtmpfs               235M     0  235M   0% /dev
+tmpfs                  245M     0  245M   0% /dev/shm
+tmpfs                  245M  4.4M  241M   2% /run
+tmpfs                  245M     0  245M   0% /sys/fs/cgroup
+/dev/mapper/rhel-home  497M   26M  472M   6% /home
+/dev/vda1              197M  110M   88M  56% /boot
+tmpfs                   49M     0   49M   0% /run/user/0
+```
+
+课堂实践：要求写python脚本完成mastera、masterb、slavea、slaveb四台服务器的vim软件的安装。
+
+```python
+#!/usr/bin/env python  
+#encoding=utf-8
+
+import paramiko  
+
+#远程服务器  
+hostname = ['172.25.0.11','172.25.0.12','172.25.0.13','172.25.0.14']  
+#端口  
+port = 22  
+#用户名  
+username = 'root'  
+#密码  
+password = 'uplooking'  
+#执行的命令
+cmd = 'yum install -y vim'
+
+#创建SSH连接日志文件（只保留前一次连接的详细日志，以前的日志会自动被覆盖）  
+paramiko.util.log_to_file('paramiko.log')
+
+#建立SSH连接  
+for ip in hostname: 
+	#创建远程连接对象s  
+	s = paramiko.SSHClient()  
+	#允许连接不在know_hosts文件中的主机
+	s.set_missing_host_key_policy(paramiko.AutoAddPolicy())  
+	#开始连接	
+	s.connect(ip,port,username,password)  
+	#远程执行的命令
+	stdin,stdout,stderr = s.exec_command(cmd)  
+	#打印标准输出  
+	print stdout.read()  
+	s.close()
+```
