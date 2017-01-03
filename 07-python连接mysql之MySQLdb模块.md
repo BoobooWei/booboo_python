@@ -175,9 +175,13 @@ Out[3]:
 # 数据库连接
 
 连接数据库前，请先确认以下事项：
+
 1. 数据库服务已经启动，并已创建了数据库 test1
+
 2. 在test1数据库中您已经创建了表 db1
+
 3. t1表字段为 id,first_name,last_name,age,sex,income
+
 4. 连接数据库t1使用的用户名为 "root" ，密码为 "uplooking"
 
 ```shell
